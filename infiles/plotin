@@ -1,0 +1,11 @@
+3D-plot:F
+internal:T                                 !z3 in film is cartesian
+2.0       1.0         1.0                  !x-axis in xyz-space
+0.0       0.0         0.0                  !origin
+0.0       1.0         1.0                  !y-axis in xyz-space
+ 31        31                              !mshx,mshy,mshz
+
+
+
+#Fraction dose not support
+#note:R=l*a1+m*a2+n*a3=(...)i+(...)j+(...)k

@@ -1,0 +1,30 @@
+ THIS IS FLAPW VERSION: 4.36.7
+   complied on MyMac
+   excuted  on 
+
+ Read dosin
+   Energy range  from  -10.00000 to:  10.00000
+   Fermi energy: by G with width of   0.0050000
+   Total dos
+
+ Read dospara
+   Fermi E(htr)      =        0.2812587273
+   Total E(htr)      =    -1707.6751679577
+   ntype             =                   2
+   nlatt             =                   1
+   nvac              =                   2
+   jspins            =                   1
+
+ Fermie energy determination
+   sum of weight     =        8.0000000000
+   fermi energy      =        0.2802985485
+   free energy       =        1.7467118061
+   energy gap in spin   1
+     e(c.b.)=   0.28058  at k=  1356
+     e(v.b.)=   0.28013  at k=    94
+         gap=   0.00045 (   0.01214 eV)
+
+ For total DOS (in eV)
+    spin                       total E           occp
+       1                      47.53045        8.00000
+ DOS calculations were done
