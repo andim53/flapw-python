@@ -8,8 +8,8 @@
    Total dos
 
  Read dospara
-   Fermi E(htr)      =        0.2812587273
-   Total E(htr)      =    -1707.6751679577
+   Fermi E(htr)      =        0.3607017069
+   Total E(htr)      =   -30196.1725471151
    ntype             =                   2
    nlatt             =                   1
    nvac              =                   2
@@ -17,14 +17,14 @@
 
  Fermie energy determination
    sum of weight     =        8.0000000000
-   fermi energy      =        0.2802985485
-   free energy       =        1.7467118061
+   fermi energy      =        0.3601946794
+   free energy       =        2.2480729677
    energy gap in spin   1
-     e(c.b.)=   0.28058  at k=  1356
-     e(v.b.)=   0.28013  at k=    94
-         gap=   0.00045 (   0.01214 eV)
+     e(c.b.)=   0.36020  at k=  1399
+     e(v.b.)=   0.36019  at k= 30393
+         gap=   0.00001 (   0.00034 eV)
 
  For total DOS (in eV)
     spin                       total E           occp
-       1                      47.53045        8.00000
+       1                      61.17318        8.00000
  DOS calculations were done

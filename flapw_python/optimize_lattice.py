@@ -146,6 +146,15 @@ def plot_optimization_result(structure, a_or_c_list=None, energies=None, a_opt=N
     import matplotlib.pyplot as plt
     import numpy as np
 
+    # Convert to numpy arrays
+    a_or_c_array = np.array(a_or_c_list)
+    energies_array = np.array(energies)
+
+    # Filter out NaNs
+    mask = ~np.isnan(energies_array)
+    a_or_c_array = a_or_c_array[mask]
+    energies_array = energies_array[mask]
+
     # Set plot style
     plt.rcParams['font.family'] = 'DejaVu Sans'
     plt.rcParams['mathtext.fontset'] = 'cm'
@@ -157,10 +166,10 @@ def plot_optimization_result(structure, a_or_c_list=None, energies=None, a_opt=N
     ylabel_plot = 'Total energy (eV)'
 
     # Define plotting limits based on data range
-    xmin_plot = min(a_or_c_list)
-    xmax_plot = max(a_or_c_list)
-    ymin_plot = min(energies)
-    ymax_plot = max(energies)
+    xmin_plot = min(a_or_c_array)
+    xmax_plot = max(a_or_c_array)
+    ymin_plot = min(energies_array)
+    ymax_plot = max(energies_array)
 
     # Add some margin to the limits
     x_margin = (xmax_plot - xmin_plot) * 0.1
@@ -168,17 +177,13 @@ def plot_optimization_result(structure, a_or_c_list=None, energies=None, a_opt=N
 
     # Create plot
     fig = plt.figure(dpi=150, figsize=figsize)
-    plt.plot(a_or_c_list, energies, 'o-', color='black', linewidth=0.8, alpha=1.0, label='Total energy')
+    plt.plot(a_or_c_array, energies_array, 'o-', color='black', linewidth=0.8, alpha=1.0, label='Total energy')
 
     # Mark optimal point
     if a_opt is not None:
-        # plt.axvline(a_opt, color='red', linestyle='--', linewidth=0.5)
-        # plt.axhline(e_opt, color='green', linestyle='--', linewidth=0.5)
         plt.plot(a_opt, e_opt, 'o', color='blue', markersize=3, label=f'Minimum at {a_opt:.3f} Å')
     
     if c_opt is not None:
-        # plt.axvline(a_opt, color='red', linestyle='--', linewidth=0.5)
-        # plt.axhline(e_opt, color='green', linestyle='--', linewidth=0.5)
         plt.plot(c_opt, e_opt, 'o', color='blue', markersize=3, label=f'Minimum at {c_opt:.3f} Å')
 
     # Set limits and ticks
@@ -199,6 +204,7 @@ def plot_optimization_result(structure, a_or_c_list=None, energies=None, a_opt=N
     plt.show()
     plt.clf()
     plt.close()
+
 
 
 # from flapw_python import optimize_lattice as opt
