@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export DYLD_LIBRARY_PATH=$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH
 
 # Create result directory

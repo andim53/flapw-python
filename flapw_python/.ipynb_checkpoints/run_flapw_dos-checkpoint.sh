@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export DYLD_LIBRARY_PATH=$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH
 # ./bin/FLrst SCF
 # sed -i '' 's/ 12  12  12 / 33  33  33 /' lapwin
