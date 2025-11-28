@@ -1,19 +1,18 @@
-Title: Hf2
+Title: Fe_NM demo on windows
 Mode: bulk                                     !bulk/film
 *** lattice vectors ***********************
-3.1613025921368005/0.529177
- 1.0    0.0    0.0   
- -0.5    0.8660254037844386    0.0   
- 0.0    0.0    1.594589094914226   
+2.87/0.529177                                  !in bohr
+ 1/2   1/2  -1/2                               !a1
+-1/2   1/2   1/2                               !a2
+ 1/2  -1/2   1/2                               !a3
 *** atomic number cartesian or internal coordinates 
 set pos file:F, name:fconst_pos1.dat           !T/F
 internal                                       !cartesian/internal
-Hf  0.0          0.0          0.0
-Hf  0.3333333333333333          0.6666666666666666          0.5
+Fe  0          0          0                    !spec1 atom1
 *** SPACE GROUP ***************************
 Representation:SR ,option:default              !SR/ZR/FR/UR SR:default
 *** GENERAL OPTIONS ***********************
-Density of states:F, option:default
+Density of states:T, option:default
 Band structure:F, option:default
 Density plot:F, option:default
 Slice analysis:F, option:set                   !no default
@@ -48,7 +47,7 @@ k-point generator:S, option:default            !S:special k-points
 Smearing:G, parameter:0.001                    !G:gaussian, in htr
 Time-reversal symmetry:T
 Division along internal axis (each window new line)
- 33  33  33                                    !k1 k2 k3
+ 12  12  12                                    !k1 k2 k3
 *** MIXING  OPTIONS ***********************
 (B)royden or (S)traight mixing for density:A   !S/B/A
 Maximum number of iterations:100               !

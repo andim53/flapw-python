@@ -1,0 +1,60 @@
+Title: Fe_NM demo on windows
+Mode: bulk                                     !bulk/film
+*** lattice vectors ***********************
+2.87/0.529177                                  !in bohr
+ 1/2   1/2  -1/2                               !a1
+-1/2   1/2   1/2                               !a2
+ 1/2  -1/2   1/2                               !a3
+*** atomic number cartesian or internal coordinates 
+set pos file:F, name:fconst_pos1.dat           !T/F
+internal                                       !cartesian/internal
+Fe  0          0          0                    !spec1 atom1
+*** SPACE GROUP ***************************
+Representation:SR ,option:default              !SR/ZR/FR/UR SR:default
+*** GENERAL OPTIONS ***********************
+Density of states:T, option:default
+Band structure:F, option:default
+Density plot:F, option:default
+Slice analysis:F, option:set                   !no default
+Force calculation:F, option:default
+Geometry optimization:F, option:default
+Nudged elastic band:F, option:default
+Force constant calculation:F, option:default
+Electron-phonon coupling:F, option:set         !no default
+External E field:F, option:set                 !no default
+External H field:F, option:set                 !no default
+Jellium potential:F, option:set                !no default
+Electric field gradient:F, option:default
+L matrix calculation:F, option:default
+P matrix calculation:F, option:default
+J matrix calculation:F, option:default
+Second variational +U:F, option:set            !no default
+Second variational SOC:F, option:set
+Dispersion correction:F, option:default
+Magnetic dipole-dipole:F, option:default
+Noncollinear Magnetism:F, option:set           !no default
+Equi-density constraint:F, option:set          !no default
+*** BASES *********************************
+star-function cut-off:9.8                      !in a.u.
+jspins=1                                       !2(spin)/1(non)
+e_float:T, xo:T                                !T/F T:default
+nwin=1                                         !1:default
+plane-wave cut off:3.9                         !in a.u.
+number of states:0                             !0:auto
+lapw parameters:default                        !set/default
+*** K-POINTS ******************************
+k-point generator:S, option:default            !S:special k-points
+Smearing:G, parameter:0.001                    !G:gaussian, in htr
+Time-reversal symmetry:T
+Division along internal axis (each window new line)
+ 12  12  12                                    !k1 k2 k3
+*** MIXING  OPTIONS ***********************
+(B)royden or (S)traight mixing for density:A   !S/B/A
+Maximum number of iterations:100               !
+Mixing parameter:0.                            !0.:auto
+Convergency: 0.                                !0.:auto
+*** OPTIONS FOR SPIN-POLARIZED CASE *******
+Spin-options:default                            !set/default
+*** ADVANCED SETTINGS *********************
+Advanced setup:default                         !set/default
+*** END ***********************************
