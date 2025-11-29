@@ -1,0 +1,106 @@
+#!/bin/sh
+#
+
+if [ $# = 0 ] ; then
+  delfile="lapwout *.end"
+  delfile="$delfile coreden coredenoff"
+  delfile="$delfile *.end.neb *.end.neb[0-9] *.end.neb[0-9][0-9]"
+  delfile="$delfile ulrt.dat"
+else
+  delfile="*.end$1"
+  delfile="$delfile coreden$1 coredenoff$1"
+  delfile="$delfile *.end.neb$1 *.end.neb[0-9]$1 *.end.neb[0-9][0-9]$1"
+  delfile="$delfile ulrt.dat$1"
+fi
+
+delfile="$delfile epara inden outden spg.dat vcoul vtot vtot.end vtot_rean"
+delfile="$delfile indenoff outdenoff vtotoff vtotoff_rean vtotoff.end" 
+delfile="$delfile den.old denoff.old epara.old coreden.old coredenoff.old"
+delfile="$delfile vtot.tmp pos.end force.end pos.dat for.dat"
+delfile="$delfile inuden inepara vmm ulrt_KS.dat ulrt_SC.dat"
+delfile="$delfile optnewt optstep"
+delfile="$delfile vexcor vext vexcoroff vextoff"
+delfile="$delfile plotcdn plotvcoul plotvexcor plotvext zplotcdn zplotvcoul zplotvexcor zplotvext plotden plotdenoff zplotden zplotdenoff"
+delfile="$delfile edist evref"
+delfile="$delfile etime"
+delfile="$delfile mix* umix* uloop*"
+
+#old files
+delfile="$delfile mix1den mix2den mix1spi mix2spi mix1tot mix2tot coff_hf.tmp"
+delfile="$delfile mixing.den broyden.den andersen.den*"
+delfile="$delfile iterate.den broyden.den* broyden.tot broyden.tot_dp iterate.tot broyden.spi broyden.spi_dp iterate.spie broyden.spx broyden.spx_dp broyden.spy broyden.spy_dp iterate.spx iterate.spy"
+delfile="$delfile hess hesse.dat hesse.tmp hesse.his opt.his slab.tmp optimize.dat"
+
+for i in $delfile ; do
+  if [ -f $i ] ; then
+    rm $i
+  fi
+done            
+
+delfile21="den*"
+delfile31="epara*"
+delfile41="uden*"
+delfile51="ulrt*"
+delfile61="pos"
+delfile71="force"
+delfile81="reorderpos"
+ 
+delfile22=".dat"
+delfile32=".tmp*"
+
+rm -f $delfile21$delfile22
+rm -f $delfile31$delfile22
+rm -f $delfile41$delfile22
+rm -f $delfile51$delfile22
+rm -f $delfile61$delfile22
+rm -f $delfile71$delfile22
+rm -f $delfile81$delfile22
+
+rm -f $delfile21$delfile32
+rm -f $delfile31$delfile32
+rm -f $delfile41$delfile32
+rm -f $delfile51$delfile32
+rm -f $delfile61$delfile32
+rm -f $delfile71$delfile32
+rm -f $delfile81$delfile32
+
+rm -f 16
+rm -f 66_up
+rm -f 66_dw
+rm -f 66set*
+rm -f 66n_*
+rm -f 66k_*
+rm -f 66e_*
+rm -f 66z_*
+rm -f 66w_*
+rm -f 68set*
+rm -f 68n_*
+rm -f 68k_*
+rm -f 68e_*
+rm -f 68z_*
+
+rm -f hs211*
+rm -f hs212*
+rm -f hs213*
+rm -f hs214*
+rm -f hs221*
+rm -f hs222*
+rm -f hs223*
+rm -f hs224*
+
+rm -f hs71*
+rm -f hs72*
+rm -f hs73*
+rm -f hs74*
+
+rm -f 66_up*.mpi*[0-9]
+rm -f 66_down*.mpi*[0-9]
+rm -f 68_up*.mpi*[0-9]
+rm -f 68_down*.mpi*[0-9]
+
+rm -f *.nebtmp*
+
+rm -f pmat*
+rm -f lmat*
+rm -f dos*.dat
+rm -f *.dat_mpi*[0-9]

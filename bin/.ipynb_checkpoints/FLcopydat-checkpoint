@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $# = 0 ] ; then
+  echo "Input file name"
+  exit
+fi
+
+filename="den_$1.dat epara_$1.dat"
+
+for i in $filename ; do
+  if [ -f $i ] ; then
+    orgname=`echo ${i/_$1.dat/}`
+    cp $i $orgname.end
+  fi
+done
