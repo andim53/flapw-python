@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ $# = 0 ] ; then
+  echo "Input file name."
+  exit
+fi
+
+filename=`ls *.end$1 2>/dev/null`
+filename="$filename `ls *.end.neb[0-9]$1 2>/dev/null`"
+filename="$filename `ls *.end.neb[0-9][0-9]$1 2>/dev/null`"
+
+for i in $filename ; do
+  if [ -f $i ] ; then
+    newname=`echo ${i/$1/}`
+    cp $i $newname
+  fi
+done 

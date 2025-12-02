@@ -1,0 +1,13 @@
+Fermi level
+  Fermi energy: 0.                            !in htr
+Energy range with respect to the Ef 
+  Emax: 10.0                                  !in eV
+  Emin:-10.0                                  !in eV
+Output of atoms
+  TDOS:T
+    re-order:T                                !in band index
+  PDOS:F
+    atom: 1                                   !all atoms    when <0
+    lorb: 2                                   !all orbitals when <0
+Energy interval in degenarated levels
+  Energy: 0.00001                             !in eV  <0 no treat

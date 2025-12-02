@@ -1,0 +1,118 @@
+#!/bin/sh 
+
+## set file name and save old file
+out='flapw.tar'
+if [ -f "$out" ]; then
+  gzip "$out"
+fi
+if [ -f "$out.gz" ]; then
+  mv "$out.gz" "$out.gz.old"
+fi
+
+## readme file
+tar cf "$out" 'README.flapw'
+if [ -e 'README.install' ]; then
+  tar rf "$out" 'README.install'
+fi
+
+## source files
+source='MAIN VER KPTS DEN POT DOS EFG MIX FORCE TOOLS SYM LMATRX PMATRX SOC LDA GGA NCM U FCONST ELPH PLOT HSMATRX BASE STDEN ATOM FERMI TENERGY INPUT FFT STAR LHARM FLIB LHARMOLD NEB VDW MDPLS'
+for d in $source; do
+  if [ -e "$d" ]; then
+    for f in "$d"/*.f "$d"/*.f90; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+  fi
+done
+
+## module files
+source='MODI MODS MODW' 
+for d in $source; do
+  if [ -e "$d" ]; then
+    for f in "$d"/*.f "$d"/*.f90; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+   fi
+done
+
+## second
+source='TIMING'
+for d in $source; do
+  if [ -e "$d" ]; then
+    for f in "$d"/time_*.f; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+   fi
+done
+
+## makefile
+source='MAKEFILES'
+for d in $source; do
+  if [ -e "$d" ]; then
+    for f in "$d"/make.conf_*; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+   fi
+done
+
+## tools
+source='bin shell DEMO SED'
+for d in $source; do
+  if [ -e "$d" ]; then
+    for f in "$d"/*; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+   fi
+done
+
+## postCAL
+for d in 'postCAL/post'*; do
+  if [ -e "$d" ]; then
+     for f in "$d"/*.f "$d"/*.f90 "$d"/*in; do
+       if [ -e "$f" ]; then
+         tar rf "$out" "$f"
+       fi
+     done
+     for f in "$d"/para* "$d"/*conf "$d"/makefile; do
+       if [ -e "$f" ]; then
+         tar rf "$out" "$f"
+       fi
+     done
+     for f in "$d"/SED* "$d"/*.plt "$d"/*.ipynb "$d"/*.py; do
+       if [ -e "$f" ]; then
+         tar rf "$out" "$f"
+       fi
+     done
+   fi
+done
+
+## postMU
+for d in 'postMU'/*; do
+  if [ -e "$d" ]; then
+    for f in "$d"/*.f "$d".txt "$d$"/makefile; do
+      if [ -e "$f" ]; then
+        tar rf "$out" "$f"
+      fi
+    done
+   fi
+done
+
+## version
+tar rf "$out" 'VER/version'
+
+## gzip
+gzip "$out"
+
+## completed
+echo 'FLAPW was packed'
+exit

@@ -1,0 +1,554 @@
+Contents
+  Install miniconda and gfortran
+  Install flapw_demo package on conda
+  DEMO for non-spin-polarized system
+  DEMO for spin-polarized system
+  Install on linux (for experts only)
+#:comment
+
+#############################################################
+Install miniconda and gfortran
+
+A.---Install miniconda package---------------
+#If already installed these package, go to B
+
+1.Download the installer and install miniconda
+https://www.anaconda.com/docs/getting-started/miniconda/install
+
+2.Open anaconda prompt on Windows
+Click "Anaconda Prompt" on Start button
+(base) conda --version
+
+3.Create your environment (e.g. flapw-env)
+(base) conda create -n flapw-env
+  
+4.Acitvate your environment
+(base) conda activate flapw-env
+(flapw-env) 
+
+B.---Install gfortran package---------------
+
+1.Install packages
+#For bash+make package
+(flapw-env) conda install -c conda-forge m2-base m2-make
+#For gfortran+openblas packages
+(flapw-env) conda install -c conda-forge m2w64-gcc-fortran openblas
+#For plotting packages
+(flapw-env) conda install -c conda-forge numpy matplotlib scipy
+#For JupyterLab package
+(flapw-env) conda install -c conda-forge jupyterlab
+
+2.Confirm commands
+(flapw-env) bash --version
+(flapw-env) make --version
+(flapw-env) gfortran --version
+(flapw-env) conda list openblas
+(flapw-env) conda list jupyter
+
+#reference
+#> conda info --envs
+#> conda create -n env_name
+#> conda remove --name env_name --all
+#> conda list 
+#> conda install -c conda-forge package_name
+#> conda remove package_name
+#> conda activate                     #to change default environment
+
+#Uninstall
+#Settings>Apps>Installed Apps>Minconda3>Uninstall
+#> cd %USERPROFILE%
+#> rm Miniconda3
+#> rm ./conda
+#> rm ./condarc
+#> rm ./cond_envs
+#> rm ./continuum
+
+#############################################################
+Install flapw_demo package
+
+A.---Install flapw_demo package--------------------------------
+
+1. Activate flapw-env
+Click "Anaconda Prompt" on Start button
+(base) conda activate flapw-env
+(flapw-env)
+
+2.Launch JupyterLab
+(flapw-env) jupyter lab
+Click "Terminal" on JupyterLab
+#symbol">" below indicates on terminal of JuypterLab
+
+3.Check HOME directory
+> echo $HOME                     !%USERPROFILE%
+
+4.Make FLAPW/ on $HOME/
+> cd $HOME/
+> mkdir FLAPW/
+> cd FLAPW/
+
+5.Copy following file to FLAPW/
+  flapw_demoXYZ.tar.gz
+> mv $HOME/Desktop/flapw_demoXYZ.tar.gz .
+#Or use "cut" and "paste"
+
+6.Ungzip and extract files	
+> tar xvfz flapw_demoXYZ.tar.gz
+
+B.---FLAPW/ directory--------------------------------
+
+1.Check directopry and files 
+$HOME (or %USERPROFILE%)
+    |---FLAPW/     
+          |---bin/		bash files
+          |---src_windows/	executables in conda for windows
+          |---src_macos/	executables in conda for macOS
+          |---infiles/		input files
+          |---DEMO/		demo files
+
+on FLAPW/bin/
+	FLchk			(check convergency) 
+	FLcopy			(save files) 
+	FLclean			(delete temporary files) 
+	FLrst			(rename file-names) 
+	FLrnm			(restore end-files)
+
+on FLAPW/src_windows/
+	flapw.exe		(SCF)
+	xdos.exe		(DOS)
+	xband.exe		(BAND)
+	xcdn.exe		(CDN)
+
+on FLAPW/infiles/
+	lapwinNOSPIN		(SCF with non-spin)
+	lapwinSPIN		(SCF with spin)
+	dosin			(DOS)
+	bandin			(BAND)
+	spkpt.init		(BAND) 
+	plotin			(CDN)
+
+on FLAPW/DEMO/
+	fig_dos.ipynb		(Jupyter Notebook file)
+	fig_band.ipynb		(Jupyter Notebook file)
+	fig_cdn2d.ipynb		(Jupyter Notebook file)
+	fig_dosSPIN.ipynb	(Jupyter Notebook file)
+	fig_bandSPIN.ipynb	(Jupyter Notebook file)
+	fig_cdn2dSPIN.ipynb	(Jupyter Notebook file)
+
+#############################################################
+DEMO for non-spin-polarized system
+
+A.---Activate flapw-env------------------------------------
+
+1.Activate flapw-env if not activated
+Click "Anaconda Prompt" on Start button
+(base) conda activate flapw-env
+(flapw-env)
+
+#for macOS, type below
+#(flapw-env) export DYLD_LIBRARY_PATH=$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH
+
+2.Launch JupyterLab
+(flapw-env) jupyter lab
+
+3.Check HOME directory
+> echo $HOME                     !%USERPROFILE%
+
+B.---Make working directory on LFAPW/----------------------
+
+1.Make work/
+> cd $HOME/
+> cd FLAPW/
+> mkdir work/
+> cd work/
+
+C.---SCF calculations---------------------------------------
+
+1.Check files
+#in-file : lapwin  
+#executable-file : ../src_windows/flapw.exe
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp ../infiles/lapwinNOSPIN lapwin
+#edit if necessary (default is okay)
+
+4.Run
+> ../src_windows/flapw.exe
+> bash ../bin/FLchk
+
+5.Save
+> bash ../bin/FLcopy SCF
+> bash ../bin/FLclean
+#keep *SCF files for the next calculations
+
+D.---DOS calculations---------------------------------------
+
+1.Check files
+#in-file : lapwin dosin
+#executable-file : ../src_windows/flapw.exe ../src_windows/xdos.exe
+#script-file : fig_dos.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Density of states:T, option:default"
+> cp ../infiles/dosin .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xdos.exe
+
+5.Save
+> mkdir DOS/
+> mv *in DOS/
+> mv *out DOS/
+> mv *xy DOS/
+> bash ../bin/FLclean
+
+6.Plot
+> cd DOS/
+> cp ../../DEMO/fig_dos.ipynb .
+Open fig_dos.ipynb and run the cell
+
+E.---BAND calculations--------------------------------------
+
+1.Check files
+#in-file : lapwin bandin spkpt.init
+#executable-file : ../src_windows/flapw.exe ../src_windows/xband.exe
+#script-file : fig_band.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Band structure:T, option:default“
+> cp ../infiles/bandin .
+> cp ../infiles/spkpt.init .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xband.exe
+
+5.Save
+> mkdir BAND/
+> mv *in BAND/
+> mv *out BAND/
+> mv *xy BAND/
+> mv *init BAND/
+> bash ../bin/FLclean
+
+6.Plot
+> cd BAND/
+> cp ../../DEMO/fig_band.ipynb .
+Open fig_band.ipynb and run the cell
+
+F.---CDN calculations--------------------------------------
+
+1.Check files
+#in-file : lapwin plotin
+#executable-file : ../src_windows/flapw.exe ../src_windows/xcdn.exe
+#script-file : fig_cdn2d.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Density plot:T, option:default"
+> cp ../infiles/plotin .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xcdn.exe
+
+5.Save
+> mkdir CDN/
+> mv *in CDN/
+> mv *out CDN/
+> mv *xy CDN/
+> bash ../bin/FLclean
+
+6.Plot
+> cd CDN/
+> cp ../../DEMO/fig_cdn2d.ipynb .
+Open fig_dcdn2d.ipynb and run the cell
+
+G.---Save working directory----------------------------
+
+1.Rename work/
+> mv work/ work_Fe-NOSPIN/
+
+#$HOME (or %USERPROFILE%)
+#    |---FLAPW/     
+#          |---bin/		bash files
+#          |---src_windows/	executable files
+#          |---infiles/		input files
+#          |---DEMO/		demo files
+#          |---work_Fe-NOSPIN/
+
+#############################################################
+DEMO for spin-polarized system
+
+A.---Activate flapw-env--------------------------------------
+
+1.Activate flapw-env if not activated
+Click "Anaconda Prompt" on Start button
+(base) conda activate flapw-env
+(flapw-env)
+
+#for macOS, type
+(flapw-env) export DYLD_LIBRARY_PATH=$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH
+
+2.Launch JupyterLab
+(flapw-env) jupyter lab
+
+3.Check HOME directrory
+> echo $HOME                     !%USERPROFILE%
+
+B.---Make working directory on FLAPW/----------------------
+
+1.Make work/
+> cd $HOME/
+> cd FLAPW/
+> mkdir work/
+> cd work/
+
+C.---SCF calculations---------------------------------------
+
+1.Check files
+#in-file : lapwin  
+#executable-file : ../src_windows/flapw.exe
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp ../infiles/lapwinSPIN lapwin
+#edit if necessary (default is okay)
+
+4.Run
+> ../src_windows/flapw.exe
+> bash ../bin/FLchk
+
+5.Save
+> bash ../bin/FLcopy SCF
+> bash ../bin/FLclean
+#keep *SCF files for the next calculations
+
+D.---DOS calculations---------------------------------------
+
+1.Check files
+#in-file : lapwin dosin
+#executable-file : ../src_windows/flapw.exe ../src_windows/xdos.exe
+#script-file : fig_dos.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Density of states:T, option:default"
+> cp ../infiles/dosin .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xdos.exe
+
+5.Save
+> mkdir DOS/
+> mv *in DOS/
+> mv *out DOS/
+> mv *xy DOS/
+> bash ../bin/FLclean
+
+6.Plot
+> cd DOS/
+> cp ../../DEMO/fig_dosSPIN.ipynb .
+Open fig_dos.ipynb and run the cell
+
+E.---BAND calculations--------------------------------------
+
+1.Check files
+#in-file : lapwin bandin spkpt.init
+#executable-file : ../src_windows/flapw.exe ../src_windows/xband.exe
+#script-file : fig_band.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Band structure:T, option:default“
+> cp ../infiles/bandin .
+> cp ../infiles/spkpt.init .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xband.exe
+
+5.Save
+> mkdir BAND/
+> mv *in BAND/
+> mv *out BAND/
+> mv *xy BAND/
+> mv *init BAND/
+> bash ../bin/FLclean
+
+6.Plot
+> cd BAND/
+> cp ../../DEMO/fig_bandSPIN.ipynb .
+Open fig_band.ipynb and run the cell
+
+F.---CDN calculations--------------------------------------
+
+1.Check files
+#in-file : lapwin plotin
+#executable-file : ../src_windows/flapw.exe ../src_windows/xcdn.exe
+#script-file : fig_cdn2d.ipynb
+
+2.Clean
+> cd work/
+> bash ../bin/FLclean
+
+3.Set
+> cp lapwinSCF lapwin
+Open lapwin and edit as below, then save
+  "Density plot:T, option:default"
+> cp ../infiles/plotin .
+> bash ../bin/FLrst SCF
+
+4.Run
+> ../src_windows/flapw.exe
+> ../src_windows/xcdn.exe
+
+5.Save
+> mkdir CDN/
+> mv *in CDN/
+> mv *out CDN/
+> mv *xy CDN/
+> bash ../bin/FLclean
+
+6.Plot
+> cd CDN/
+> cp ../../DEMO/fig_cdn2dSPIN.ipynb .
+Open fig_dcdn2d.ipynb and run the cell
+
+G.---Save working directory----------------------------
+
+1.Rename work/
+> mv work/ work_Fe-SPIN/
+
+#$HOME (or %USERPROFILE%)
+#    |---FLAPW/     
+#          |---bin/		bash files
+#          |---src_windows/	executable files for windows
+#          |---infiles/		input files
+#          |---DEMO/		demo files
+#          |---work_Fe-NOSPIN/
+#          |---work_Fe-SPIN/
+
+##########################################################
+Install on linux 
+
+$HOME/
+ |---FLAPW/
+     |---bin/
+     |---src/
+     |---work/   (working directory)
+
+A.---Install----------------------------------------------
+
+1.Make FLAPW and FLAPW/src/
+> cd $HOME/
+> mkdir FLAPW/
+> cd FLAPW/
+> mkdir src/
+> cd src/
+
+2.Copy following files to src/
+  flapw.tar.gz
+  instal_flapw 
+  README.flapw
+
+3.Install flapw
+> ./install_flapw
+    you have a few inquires interactively as
+    ---
+    Platform:---
+    Which platform? ifort                       !'ifort' for intel fortran
+    Parallel with MPI? (y/n) n                  !'y/n' for parallel/serial
+    Do you want to install? (y/n) y             !'y'
+    Do you want to update FL-commands? (y/n) y  !'y'
+    ---
+    when you have no platform 
+    chose 'user' and edit /MAKEFILES/make.conf for fortran
+
+4.Compile exe-file "flapw" or "pflapw" (p indicates parallel)
+> make
+
+5.Set bash environment
+> cd $HOME/
+> vi .bashrc
+    add following lines
+    --
+    PATH=$HOME/FLAPW/bin:$PATH
+    export PATH
+    --
+> source .bashrc
+
+B.---Make working directory------------------------
+
+1. Make working directory work/
+> cd $HOME/
+> mkdir work/
+> cd work/
+
+C.---Run (p)flapw----------------------------------
+
+1.Copy (p)flapw and lapwin to work/
+> cp $HOME/FLAPW/src/flapw .
+> cp $HOME/FLAPW/src/DEMO/lapwin_bulk_demo lapwin
+
+2.Edit lapwin if necessary
+> vi lapwin
+
+3.Run (p)flapw on background
+> ./flapw >& log &                        #for serial job
+#for parallel job, follow the MPI
+
+4.Check convergency
+> FLchk
+
+#Reference
+#Check charge convergency and total energy
+#> FLchk
+#Save files
+#> FLcopy filename
+#Delete temporary files 
+#> FLclean
+#Rename saved files
+#> FLrnm present-filename new-filename
+#Restore end-files for the next calculations
+#> FLrst filename

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ $# -le 1 ] ; then
+  echo "Input file name"
+  exit
+fi
+
+filename="lapwin$1 lapwout$1"
+filename="$filename `ls *.end$1 2>/dev/null`"
+filename="$filename `ls *.init$1 2>/dev/null`"
+filename="$filename ulrt.dat$1"
+filename="$filename optimizein$1 inputopt.dat$1"
+filename="$filename `ls *.end.neb[0-9]$1 2>/dev/null`"
+filename="$filename `ls *.end.neb[0-9][0-9]$1 2>/dev/null`"
+
+for i in $filename ; do
+  if [ -f $i ] ; then
+    orgname=`echo ${i/$1/}`
+    mv $i $orgname$2
+  fi
+done
