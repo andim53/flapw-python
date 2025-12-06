@@ -18,6 +18,17 @@ export DYLD_LIBRARY_PATH=$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH
 # mv $(find . -maxdepth 1 -type f -name '*xy') DOS/
 # ./bin/FLclean
 
-cp ./infiles/dosin ./flapw_out
-(cd ./flapw_out && ../bin/FLrst SCF)
-(cd ./flapw_out && ../src_macos/flapw && ../src_macos/xdos)
+../flapw_python/bin/FLclean
+../flapw_python/bin/FLrst SCF
+cp lapwinSCF lapwin
+# sed -i '' 's/Band structure:T/Band structure:F/' lapwin
+# sed -i '' 's/Density plot:T/Density plot:F/' lapwin
+sed -i '' 's/Density of states:F/Density of states:T/' lapwin
+cp ../flapw_python/infiles/dosin .
+../flapw_python/src_macos/flapw 
+../flapw_python/src_macos/xdos
+mkdir -p DOS/
+mv $(find . -maxdepth 1 -type f -name '*in') DOS/
+mv $(find . -maxdepth 1 -type f -name '*out') DOS/
+mv $(find . -maxdepth 1 -type f -name '*xy') DOS/
+../flapw_python/bin/FLclean

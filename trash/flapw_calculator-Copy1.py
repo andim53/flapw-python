@@ -1,4 +1,4 @@
-import os, stat
+import os
 import numpy as np
 from ase.calculators.calculator import FileIOCalculator
 import shutil
@@ -6,14 +6,13 @@ import shutil
 class FlapwCalculator(FileIOCalculator):
     __version__ = 0.3
     implemented_properties = ['energy']
-    
     def __init__(self, 
                  restart=None,
                  ignore_bad_restart_file=FileIOCalculator._deprecated,
                  atoms=None,
                  write_lapwin = False,
-                 lapwin='./flapw_python/infiles/lapwin', 
-                 lapwout='./lapwout',
+                 lapwin='./infiles/lapwin', 
+                 lapwout='./flapw_out/lapwout',
                  a=None,
                  command='./flapw_python/run_flapw.sh', 
                  label='flapw', **kwargs):
@@ -33,13 +32,15 @@ class FlapwCalculator(FileIOCalculator):
                                   **kwargs)
        
     def write_input(self, atoms, properties=None, system_changes=None):
+        os.makedirs('./flapw_out', exist_ok=True)
+
         if self.write_lapwin:
             atom = atoms
             FileIOCalculator.write_input(self, atoms, properties,system_changes)
             with open(self.lapwin,'r') as file:
                 lines=file.readlines()
     
-            with open('./lapwin','w') as file:
+            with open('./flapw_out/lapwin','w') as file:
                 if self.a == None:
                     a=np.linalg.norm(atom.cell[0])
                 else:
@@ -73,7 +74,7 @@ class FlapwCalculator(FileIOCalculator):
                     else:
                         file.write(lines[i])
         else:
-            shutil.copy(self.lapwin, './')
+            shutil.copy(self.lapwin, './flapw_out/')
             pass
             
 

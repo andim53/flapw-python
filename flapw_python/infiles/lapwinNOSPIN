@@ -12,7 +12,7 @@ Fe  0          0          0                    !spec1 atom1
 *** SPACE GROUP ***************************
 Representation:SR ,option:default              !SR/ZR/FR/UR SR:default
 *** GENERAL OPTIONS ***********************
-Density of states:T, option:default
+Density of states:F, option:default
 Band structure:F, option:default
 Density plot:F, option:default
 Slice analysis:F, option:set                   !no default

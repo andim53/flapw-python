@@ -16,6 +16,7 @@
      b3     1.15851    0.00000    1.15851
    volume of the unit cell:           79.765082
    number of atoms:     1
+   atom positions from file: pos.end             
    initial positions
             internal                            cartesian
    1 Fe     0.00000    0.00000    0.00000       0.00000    0.00000    0.00000
@@ -305,21 +306,6 @@
    nk2=        15   mx2=        7
    nk3=        15   mx3=        7
 
- Superposition of atomic densities
-   original atomic densities:
-   converged in  20 iterations to a distance of 0.72633E-03 har
-   num    n  kappa  l    j       occ.   eigenvalue (har)  <r>  
-     1    1   -1    0   0.5      2.00  -256.540690    0.058550
-     2    2   -1    0   0.5      2.00   -29.986602    0.267334
-     3    2    1    1   0.5      2.00   -25.886740    0.233693
-     4    2   -2    1   1.5      4.00   -25.429078    0.236740
-     5    3   -1    0   0.5      2.00    -3.382870    0.811352
-     6    3    1    1   0.5      2.00    -2.185034    0.851137
-     7    3   -2    1   1.5      4.00    -2.127923    0.860697
-     8    3    2    2   1.5      4.00    -0.230852    1.139140
-     9    3   -3    2   2.5      2.00    -0.225256    1.145882
-    10    4   -1    0   0.5      2.00    -0.146748    2.599733
-
  Self-consistent iteration
 
  it=    1
@@ -327,23 +313,23 @@
  Potential generator
    coulomb potential average at intersitital
                  spin 1         spin 2
-                 0.375152
+                 0.339057
    effective potential average at intersitital
                  spin 1         spin 2
-                -0.014069
+                -0.053288
 
  Radial wavefunction parameters for atom type     1
  spin: 1
     l    energy      node   node(E)      norm     wronk        xo
-    0    0.0000         3         4    0.0207    0.4890   -0.0110
-    1    0.0000         2         3    0.0131    0.4368   -0.0632
-    2    0.0000         0         0    0.5455    0.5001    0.0000
-    3    0.0000         0         0    0.0085    0.5000    0.0000
-    4    0.0000         0         0    0.0031    0.5000    0.0000
-    5    0.0000         0         0    0.0015    0.5000    0.0000
-    6    0.0000         0         0    0.0009    0.4999    0.0000
-    7    0.0000         0         0    0.0005    0.4999    0.0000
-    8    0.0000         0         0    0.0004    0.4999    0.0000
+    0    0.1691         3         4    0.0236    0.4915   -0.0085
+    1    0.2437         2         3    0.0160    0.4593   -0.0408
+    2    0.2781         0         0    1.1015    0.5001    0.0000
+    3    0.2839         0         0    0.0102    0.5000    0.0000
+    4    0.2833         0         0    0.0035    0.5000    0.0000
+    5    0.2882         0         0    0.0017    0.5000    0.0000
+    6    0.2869         0         0    0.0009    0.5000    0.0000
+    7    0.2815         0         0    0.0006    0.4999    0.0000
+    8    0.2764         0         0    0.0004    0.4999    0.0000
 
  Eigenvalue problem for k-points:    68
    k-point      1th
@@ -485,12 +471,12 @@
 
  Fermie energy determination
    sum of weight     =        8.0000000000
-   fermi energy      =        0.3987986656
-   free energy       =        2.5016761431
+   fermi energy      =        0.3407638508
+   free energy       =        2.0989246866
    energy gap in spin   1
-     e(c.b.)=   0.39908  at k=    52
-     e(v.b.)=   0.39875  at k=    23
-         gap=   0.00033 (   0.00889 eV)
+     e(c.b.)=   0.34126  at k=    57
+     e(v.b.)=   0.34050  at k=    59
+         gap=   0.00076 (   0.02060 eV)
 
  Symmetry degrades to: fr
 
@@ -765,43 +751,43 @@
  Potential generator
    coulomb potential average at intersitital
                  spin 1         spin 2
-                 0.375152
+                 0.339057
    effective potential average at intersitital
                  spin 1         spin 2
-                -0.014069
+                -0.053288
 
  Fermie energy determination
    sum of weight     =        8.0000000000
-   fermi energy      =        0.3987986656
-   free energy       =        2.5016761431
+   fermi energy      =        0.3407638508
+   free energy       =        2.0989246866
    energy gap in spin   1
-     e(c.b.)=   0.39908  at k=  1434
-     e(v.b.)=   0.39875  at k=   538
-         gap=   0.00033 (   0.00889 eV)
+     e(c.b.)=   0.34126  at k=  1542
+     e(v.b.)=   0.34050  at k=  1590
+         gap=   0.00076 (   0.02060 eV)
 
  Core states
 
    z= 26.     r(1)=  0.407990E-04     dx= 0.030000     m.t.index= 361
    num  n  l    j    energy    weight    density at nucleus            <r>
-     1  1  0  0.5 -256.5179      2.00         0.1392242E+05        0.05845
-     2  2  0  0.5  -29.4564      2.00         0.1306396E+04        0.26672
-     3  2  1  0.5  -25.3081      2.00         0.7132935E+01        0.23341
-     4  2  1  1.5  -24.8493      4.00         0.1680579E-03        0.23645
-     5  3  0  0.5   -2.8040      2.00         0.1882969E+03        0.81213
-     6  3  1  0.5   -1.5959      2.00         0.9816873E+00        0.85565
-     7  3  1  1.5   -1.5396      4.00         0.2310370E-04        0.86544
+     1  1  0  0.5 -256.5648      2.00         0.1392127E+05        0.05845
+     2  2  0  0.5  -29.5339      2.00         0.1306352E+04        0.26671
+     3  2  1  0.5  -25.3845      2.00         0.7130113E+01        0.23342
+     4  2  1  1.5  -24.9259      4.00         0.1679933E-03        0.23646
+     5  3  0  0.5   -2.8593      2.00         0.1890082E+03        0.81092
+     6  3  1  0.5   -1.6502      2.00         0.9867830E+00        0.85377
+     7  3  1  1.5   -1.5936      4.00         0.2322578E-04        0.86351
    atom type  1  (spin 1) 
-   kinetic energy=            0.124501886128E+04
-   sum of eigenvalues=       -0.736920216960E+03
-   electrons lost from core=          0.06010591
+   kinetic energy=            0.124535158513E+04
+   sum of eigenvalues=       -0.738063410806E+03
+   electrons lost from core=          0.05895329
 
   Add core tail charge to qpw in average
-    spin= 1  tail charge=      0.0601059
+    spin= 1  tail charge=      0.0589533
 
  Density at nucleus v:valence, c:core
    type    charge
-     1 v        7.47064
-     1 c    15425.22316
+     1 v        6.83866
+     1 c    15424.74425
 
  Total charge in whole space:
            charge
@@ -809,39 +795,38 @@
 
  Total charge in atom type:
    type    charge
-     1      23.95190
+     1      24.06813
 
  Valence charge in atom type:
    type    charge
-     1       6.01200
+     1       6.12708
 
  l-like valence charge in atom type:
    type l  charge
-     1 0     0.23313
-     1 1     0.23606
-     1 2     5.53000
-     1 3     0.01077
+     1 0     0.22615
+     1 1     0.20075
+     1 2     5.68866
+     1 3     0.00970
 
  Charge distance
-   square of distance of atom type     1   =      756.742    
-   square of distance of interstitial      =      24.4918    
- distance of charge densities for it=    1:      27.950552 me/bohr**3
+   square of distance of atom type     1   =     0.111134E-02
+   square of distance of interstitial      =     0.376911E-04
+ distance of charge densities for it=    1:       0.033897 me/bohr**3
 
  Charge mixing
    length of charge density vector:           35991
 
  Total energy
    sum of eigenvalues
-              valence:                         2.5016761431
-              core   :                      -736.9202169599
+              valence:                         2.0989246866
+              core   :                      -738.0634108058
    density-potential integral -(v+2(uxc-exc))/2
-         interstitial:                        -0.1905507077
-               1th MT:                      -538.1547456541
+         interstitial:                        -0.1479330333
+               1th MT:                      -536.6690825297
 
-   total energy for it=    1:              -1272.7638371786 htr
+   total energy for it=    1:              -1272.7815016823 htr
 
- it=    1 self_loop overs maximum iteration
- Warn: sub_flapw: self_loop is not converged
+ it=    1 self_loop is completed
 
  DOS calculations ...
 
